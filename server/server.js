@@ -4,12 +4,13 @@ const path = require('path');
 const mongoose = require('mongoose');
 const userRouter = require('./routes/userRouter');
 const productRouter = require('./routes/productRouter');
+const cors = require('cors');
 const orderRouter = require('./routes/orderRouter');
 const app = express();
 
 //db connect 
 // console.log(process.env.MONGODB_URI );
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mern_ecommerce', {
+mongoose.connect(process.env.CONNECTIONSTRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -20,12 +21,12 @@ const PORT = process.env.PORT || 8080;
 //use express middlewaree
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(cors());
 //use serRouter
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
-
+app.use(cors());
 
 //Paypal client ID from .env file. send back to front end
 app.get('/api/config/paypal', (req, res) => {
