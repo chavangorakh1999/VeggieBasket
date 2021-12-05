@@ -3,13 +3,19 @@ version: '3.8'
 services:
    mongo:
       image: "mongo"
+      ports:
+         - "27017:27017"
    server:
-      build: ./server
+      image: 7020548690/veggiebasket_server:v1.0.2
       ports:
          - "8080:8080"
+      depends_on:
+         - "mongo"
       environment:
          - CONNECTIONSTRING=mongodb://mongo:27017/mern-ecommerce
    app:
-      build: ./client
+      image: 7020548690/veggiebasket_app:v1.0.4
       ports:
          - "3000:3000"
+      depends_on:
+         - "server"
