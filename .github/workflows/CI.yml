@@ -18,5 +18,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Testing Client
       working-directory: ./client
-    - run: npm run build --if-present
-    - run: npm test
+      run: |
+        npm run build --if-present
+        npm test
+
