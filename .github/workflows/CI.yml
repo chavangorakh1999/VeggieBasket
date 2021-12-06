@@ -11,10 +11,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    defaults:
+      run:
+        working-directory: ./client
     steps:
     - uses: actions/checkout@v2
     - name: Build client
-      working-directory: ./client
       run: |
         npm install
         npm run build --if-present
