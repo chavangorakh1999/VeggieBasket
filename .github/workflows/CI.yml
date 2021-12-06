@@ -35,7 +35,7 @@ jobs:
        context: ./client
        file: ./client/Dockerfile
        push: true
-       tags: bengotch/simplewhale:latest
+       tags: ${{ secrets.DOCKER_HUB_USERNAME }}/veggiebasket_app:latest
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
