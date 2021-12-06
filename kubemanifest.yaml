@@ -16,6 +16,7 @@ items:
           port: 3000
       selector:
         io.kompose.service: app
+      type: LoadBalancer
     status:
       loadBalancer: {}
   - apiVersion: v1
@@ -53,6 +54,7 @@ items:
           port: 8080
       selector:
         io.kompose.service: server
+      type: LoadBalancer
     status:
       loadBalancer: {}
   - apiVersion: apps/v1
@@ -81,7 +83,7 @@ items:
             io.kompose.service: app
         spec:
           containers:
-            - image: 7020548690/veggiebasket_app:v1.0.4
+            - image: 7020548690/veggiebasket_app:v1.0.5
               name: app
               ports:
                 - containerPort: 3000
@@ -150,7 +152,7 @@ items:
             - env:
                 - name: CONNECTIONSTRING
                   value: mongodb://mongo:27017/mern-ecommerce
-              image: 7020548690/veggiebasket_server:v1.0.2
+              image: 7020548690/veggiebasket_server:v1.0.3
               name: server
               ports:
                 - containerPort: 8080

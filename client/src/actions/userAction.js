@@ -8,7 +8,7 @@ export const register = (name, email, password) => async (dispatch) => {
 
     try{
         // use axios for http post request when user REGISTERg in 
-        const { data } = await axios.post('http://localhost:8080/api/users/register', { name, email, password});
+        const { data } = await axios.post('http://172.105.46.241:8080/api/users/register', { name, email, password});
         // if success, dispatch success and set payload to data 
         dispatch({ type: USER_REGISTER_SUCCESS, payload:  data });
         //also dispatch SignIn_Success because userSignin.userInfo is what we use to valid user
@@ -30,7 +30,7 @@ export const signin = (email, password) => async (dispatch) => {
 
     try{
         // use axios for http post request when user signing in 
-        const { data } = await axios.post('http://localhost:8080/api/users/signin', { email, password});
+        const { data } = await axios.post('http://172.105.46.241:8080/api/users/signin', { email, password});
         // if success, dispatch success and set payload to data 
         dispatch({ type: USER_SIGNIN_SUCCESS, payload:  data });
         // save data to localStorage
@@ -58,7 +58,7 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
 
     try{
         //send ajax request 
-        const { data } = await axios.get(`http://localhost:8080/api/users/${userId}`, {
+        const { data } = await axios.get(`http://172.105.46.241:8080/api/users/${userId}`, {
             headers: {
                 Authorization: `Bearer ${userInfo?.token}`
             }
@@ -79,7 +79,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 
     try{
         //send ajax request 
-        const { data } = await axios.put('http://localhost:8080/api/users/profile', user, {
+        const { data } = await axios.put('http://172.105.46.241:8080/api/users/profile', user, {
             headers: {
                 Authorization: `Bearer ${userInfo?.token}`
             }
