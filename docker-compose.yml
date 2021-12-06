@@ -14,7 +14,7 @@ services:
       environment:
          - CONNECTIONSTRING=mongodb://mongo:27017/mern-ecommerce
    app:
-      image: 7020548690/veggiebasket_app:v1.0.5
+      image: 7020548690/veggiebasket_app:v1.0.4
       ports:
          - "3000:3000"
       depends_on:
