@@ -16,7 +16,6 @@ items:
           port: 3000
       selector:
         io.kompose.service: app
-      type: LoadBalancer
     status:
       loadBalancer: {}
   - apiVersion: v1
@@ -51,10 +50,9 @@ items:
     spec:
       ports:
         - name: "8080"
-          port: 8080
+          port: 80
       selector:
         io.kompose.service: server
-      type: LoadBalancer
     status:
       loadBalancer: {}
   - apiVersion: apps/v1
