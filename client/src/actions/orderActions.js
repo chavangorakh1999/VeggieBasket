@@ -8,7 +8,7 @@ export const createOrder = (order) => async (dispatch, getState ) => {
     try {
         //get userinfo from redux store using getState that returns the whole redux store 
         const { userSignin: {userInfo}} = getState();
-        const { data } = await axios.post('http://172.105.46.241:8080/api/orders', order, {
+        const { data } = await axios.post('http://localhost:8080/api/orders', order, {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
             },
@@ -37,7 +37,7 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
         //get the order-detail data from API request 
         // need to send the optional header token info for the backend authorization
         const { data } = await axios.get(
-            `http://172.105.46.241:8080/api/orders/${orderId}`, 
+            `http://localhost:8080/api/orders/${orderId}`, 
             {
                 headers: {
                     Authorization: `Bearer ${userInfo.token}`
@@ -63,7 +63,7 @@ export const payOrder = (order, paymentResult) => async (dispatch, getState) => 
         // need to send the optional header token info for the backend authorization
         //updated order with payment result from paypal api 
         const { data } = await axios.put(
-            `http://172.105.46.241:8080/api/orders/${order._id}/pay`, paymentResult,
+            `http://localhost:8080/api/orders/${order._id}/pay`, paymentResult,
             {
                 headers: {
                     Authorization: `Bearer ${userInfo.token}`
@@ -88,7 +88,7 @@ export const listOrderMine = () => async (dispatch, getState) => {
     
     try{
         // send ajax request to get the user's orders 
-        const { data } = await axios.get('http://172.105.46.241:8080/api/orders/mine', {
+        const { data } = await axios.get('http://localhost:8080/api/orders/mine', {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
             },

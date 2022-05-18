@@ -16,6 +16,7 @@ items:
           port: 3000
       selector:
         io.kompose.service: app
+      type: NodePort
     status:
       loadBalancer: {}
   - apiVersion: v1
@@ -47,12 +48,14 @@ items:
       labels:
         io.kompose.service: server
       name: server
+     
     spec:
       ports:
         - name: "8080"
-          port: 80
+          port: 8080
       selector:
         io.kompose.service: server
+      type: NodePort
     status:
       loadBalancer: {}
   - apiVersion: apps/v1
@@ -66,7 +69,7 @@ items:
         io.kompose.service: app
       name: app
     spec:
-      replicas: 1
+      replicas: 3
       selector:
         matchLabels:
           io.kompose.service: app
@@ -81,7 +84,7 @@ items:
             io.kompose.service: app
         spec:
           containers:
-            - image: 7020548690/veggiebasket_app:v1.0.5
+            - image: 7020548690/veggiebasket_app:latest
               name: app
               ports:
                 - containerPort: 3000
@@ -132,7 +135,7 @@ items:
         io.kompose.service: server
       name: server
     spec:
-      replicas: 1
+      replicas: 3
       selector:
         matchLabels:
           io.kompose.service: server
